@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Result from "./result";
-// import axios from "axios";
+import axios from "axios";
 // // import * as jpickle from "jpickle";
 // // // const fs = require('fs')
 // // import * as fs from "fs"
@@ -177,7 +177,6 @@ import Result from "./result";
 // }
 
 // import { useState } from 'react'
-import axios from "axios";
 import logo from './logo.svg';
 import './App.css';
 
