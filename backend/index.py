@@ -85,7 +85,7 @@ def fetch_poster(movie_id):
     data = requests.get(url)
     data = data.json()
     poster_path = data['poster_path']
-    full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
+    full_path = "https://image.tmdb.org/t/p/w300" + poster_path
     return full_path
 
 def recommend(movie):

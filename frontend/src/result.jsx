@@ -14,9 +14,9 @@ export default function Result(props) {
           <div className="card" key={index}>
             <img
               className="card--image"
+              style={{ width: "100%", height: "80%" }}
               src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-              alt={item.title}
-            />
+              alt={item.title}            />
             <div className="card--details">
               <h2 className="card--title">{item.title}</h2>
               <p className="card--rating">Rating: {item.vote_average}</p>
