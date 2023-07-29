@@ -1,5 +1,6 @@
 
 import React from "react";
+import './result.css';
 
 export default function Result(props) {
   const { movies } = props;
@@ -14,10 +15,10 @@ export default function Result(props) {
           <div className="card" key={index}>
             <img
               className="card--image"
-              style={{ width: "100%", height: "80%" }}
+              style={{ width: "300px", height: "450px" }}
               src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
               alt={item.title}            />
-            <div className="card--details">
+            <div className="card--details" style={{width:"300px"}}>
               <h2 className="card--title">{item.title}</h2>
               <p className="card--rating">Rating: {item.vote_average}</p>
             </div>

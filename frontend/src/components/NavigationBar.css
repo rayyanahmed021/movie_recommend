@@ -1,0 +1,12 @@
+a.nav-link{
+    font-size: 15px;
+    color: white !important;
+}
+a.navbar-brand{
+    font-size: 20px;
+    color: white !important;
+}
+span.navbar-brand{
+    color: white !important;
+    font-size: 30px;
+}

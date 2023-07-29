@@ -36,6 +36,7 @@
     transform: rotate(360deg);
   }
 }
-html{
-  font-family: sans-serif;
+html,#root{
+  /* font-family: Segoe UI; */
+  background-color: #36474f;
 }
