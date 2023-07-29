@@ -3,9 +3,15 @@ import Result from "./result";
 import axios from "axios";
 import logo from './logo.svg';
 import './App.css';
+import Button from 'react-bootstrap/Button';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Navigationbar from './components/NavigationBar';
 
-export default function SearchMovies() {
-  const [query, setQuery] = useState("");
+export default function SearchMovies(arg) {
+  
+  
+  const [query, setQuery] = useState(arg["arg"]);
+  console.log(arg)
   const [movies, setMovies] = useState([]);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [showRecommendations, setShowRecommendations] = useState(false);
@@ -15,38 +21,16 @@ export default function SearchMovies() {
   const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?&api_key=62dbfaf3ecfd92acfdc2889d0f966ecc&query=";
 
-
-  // fetch('http://127.0.0.1:5000/data?movie=Pan', {
-  //     method: 'GET',
-  //      mode:"cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     redirect: "follow", 
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  //     .catch(error => console.log(error))
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <div>
-  //         HAHAHAHA
-  //       </div>
-  //     </header>
-  //   </div>
-  // );
   const fetchMovies = async (query) => {
     try {
       let url = APIURL;
       if (query) {
         url = SEARCHAPI + query;
       }
-      console.log(url)
       const res = await axios.get(url);
       const data = res.data;
       setMovies(data.results);
-      console.log(data.results)
+      // console.log(data.results)
     } catch (err) {
       console.log(err);
     }
@@ -108,8 +92,8 @@ export default function SearchMovies() {
     })
       .then(response => response.json())
       .then(data => {
-        setMovies(data)
-        console.log(data)
+        console.log(data);
+        setMovies(data);
       })
       .catch(error => console.log(error))
   };
@@ -123,30 +107,38 @@ export default function SearchMovies() {
     setShowRecommendations(true);
     recommendMovies(query);
   };
-  return (
-    <div>
-      <h1 className="title" style={{textAlign:"center"}}>React Movie Search</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="input"
-          placeholder="Search movies..."
-          value={query}
-          onChange={(e) => {setQuery(e.target.value); fetchMovies(e.target.value)}}
-        />
-        <button type="submit" className="button">
-          Search
-        </button>
-      </form>
-      {!query?handleSubmit():""}
-      <div className="button-container">
-        <button className="button" onClick={handleRecommend}>
-          Recommend
-        </button>
+    useEffect(()=>{
+      // do stuff here..
+      if (query){
+        fetchMovies(query)
+      }
+      else{
+        fetchMovies()
+      }
+      
+  }, []) // <-- empty dependency array
+    return (
+      
+      <div>
+          <div className="button-container">
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="input"
+              placeholder="Search movies..."
+              // value={query}
+              onChange={(e) => { setQuery(e.target.value);fetchMovies(e.target.value) }}
+            />
+            <span>
+            <Button size="lg" style={{"backgroundColor":"#ba68c8"}}>Search</Button>
+            <Button size="lg" onClick={handleRecommend} style={{"backgroundColor":"#ba68c8"}}>Recommend</Button>
+            </span>
+          </form>
+          
+        </div>
+        {/* </form> */}
+        <Result movies={movies} />
       </div>
-      <Result movies={movies} />
-    </div>
-  );
-
-
-}
+      
+    );
+  }

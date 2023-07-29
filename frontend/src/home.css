@@ -1,0 +1,21 @@
+.Home_alignCenter__24fiK {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Home_outer__yFb70{
+    background-color: #36474f;
+    color: white;
+    font-size: small;
+}
+.Home_h1__7tdRW{
+    color: white !important;
+    font-weight: 700;
+    font-size: 52px;
+}
+.Home_outer__yFb70{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
